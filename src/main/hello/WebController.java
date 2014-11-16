@@ -1,5 +1,8 @@
 package main.hello;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -33,11 +36,11 @@ public class WebController extends WebMvcConfigurerAdapter {
     }
 
     @RequestMapping(value="/person", method=RequestMethod.POST)
-    public String checkPersonInfo(@Valid @ModelAttribute("person") Person person, BindingResult bindingResult, Model model) {
+    public String checkPersonInfo(@Valid @ModelAttribute("person") Person person, BindingResult bindingResult, Model model) throws UnsupportedEncodingException {
         if (bindingResult.hasErrors()) {
             return "form";
         }
-        return "redirect:/results?name="+person.getName();
+		return "redirect:/results?name="+URLEncoder.encode(person.getName(), "UTF-8");
     }
 
     /**
