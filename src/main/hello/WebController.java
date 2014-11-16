@@ -45,7 +45,7 @@ public class WebController extends WebMvcConfigurerAdapter {
      * @author Jerome
      */
     public static class Person {
-    	
+  
         @Size(min=2, max=30)
         private String name;
 

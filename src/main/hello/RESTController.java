@@ -19,20 +19,20 @@ public class RESTController {
 	@Autowired
 	private VersionService versionService;
 
-    @RequestMapping("/version")
-    public Version greeting() {
-        return versionService.getVersion();
-    }
+	@RequestMapping("/version")
+	public Version version() {
+		return versionService.getVersion();
+	}
 
-    @Async
-    @RequestMapping("/async-version")
-    public Callable<Version> async() {
-    	return new Callable<Version>() {
+	@Async
+	@RequestMapping("/async-version")
+	public Callable<Version> async() {
+		return new Callable<Version>() {
 			@Override
 			public Version call() throws Exception {
 				Thread.sleep(1000);
 				return versionService.getVersion();
 			}
-    	};
-    }
+		};
+	}
 }

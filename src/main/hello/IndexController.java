@@ -18,10 +18,10 @@ public class IndexController {
 	 * @param model model
 	 * @return page name
 	 */
-    @RequestMapping("/")
-    public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-        return "index";
-    }
+	@RequestMapping("/")
+	public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
+		model.addAttribute("name", name);
+		return "index";
+	}
 
 }
