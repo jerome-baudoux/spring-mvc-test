@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Spring test</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <p th:text="'Hello, ' + ${name} + '!'" />
+    <p>
+    	You can check the following:
+    	<ul>
+    		<li><a href="version">Version (JSON)</a></li>
+    		<li><a href="async-version">Async Version (JSON)</a></li>
+    		<li><a href="person">Person (HTML)</a></li>
+    	</ul>
+    </p>
+</body>
+</html>
