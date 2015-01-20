@@ -24,4 +24,15 @@ public class IndexController {
 		return "index";
 	}
 
+	/**
+	 * Index
+	 * @param name optional
+	 * @param model model
+	 * @return page name
+	 */
+	@RequestMapping("/ajax")
+	public String greeting(Model model) {
+		return "ajax";
+	}
+
 }

@@ -2,6 +2,8 @@ package main.hello;
 
 import main.services.VersionService;
 import main.services.VersionService.Version;
+
+import java.util.Date;
 import java.util.concurrent.Callable;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,23 @@ public class RESTController {
 	@RequestMapping("/version")
 	public Version version() {
 		return versionService.getVersion();
+	}
+
+	@RequestMapping("/wait")
+	public String doWait() {
+		
+		System.out.println("Started at: " + new Date());
+		
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("Ended at: " + new Date());
+		
+		return "ok";
 	}
 
 	@Async

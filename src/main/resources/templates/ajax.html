@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Spring test</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript">
+    
+    	// First call
+		console.log("Task 1 Start at: " + new Date());
+		$.get("wait?nocache=1", function(data) {
+			console.log("Task 1 End at: " + new Date());
+		});
+	    
+		// Second call
+		console.log("Task 2 Start at: " + new Date());
+		$.get("wait?nocache=2", function(data) {
+			console.log("Task 2 End at: " + new Date());
+		});
+		
+	</script>
+</head>
+<body>
+    See the console logs for more info
+</body>
+</html>
