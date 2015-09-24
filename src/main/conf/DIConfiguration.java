@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @author Jerome
  */
 @Configuration
-@ComponentScan(value={"main.services"})
+@ComponentScan(value={"main.hello"})
 public class DIConfiguration {
  
 	/**
