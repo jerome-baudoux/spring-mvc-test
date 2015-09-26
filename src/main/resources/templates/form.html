@@ -5,20 +5,26 @@
 	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	</head>
     <body>
-        <form action="#" th:action="@{/person}" th:object="${person}" method="post">
+    	<div layout:include="index :: index-menu"></div>
+        <form action="#" th:action="@{/person/check}" th:object="${person}" method="post">
             <table>
                 <tr>
-                    <td>Name:</td>
-                    <td><input type="text" th:field="*{name}" /></td>
-                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+                    <td>Id:</td>
+                    <td><input  type="text" th:field="*{id}" /></td>
+                    <td th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Id Error</td>
                 </tr>
                 <tr>
-                    <td>Age:</td>
-                    <td><input  type="text" th:field="*{age}" /></td>
-                    <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</td>
+                    <td>First Name:</td>
+                    <td><input type="text" th:field="*{firstName}" /></td>
+                    <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</td>
                 </tr>
                 <tr>
-                    <td><button type="submit">Submit</button></td>
+                    <td>Last Name:</td>
+                    <td><input type="text" th:field="*{lastName}" /></td>
+                    <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Validate</button></td>
                 </tr>
             </table>
         </form>

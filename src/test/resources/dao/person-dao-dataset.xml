@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <person ID="1" FIRST_NAME="fn1" LAST_NAME="ln1"></person>
+    <person ID="2" FIRST_NAME="fn2" LAST_NAME="ln2"></person>
+</dataset>

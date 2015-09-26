@@ -1,8 +1,8 @@
-package main;
+package mvc;
 
 import java.util.Locale;
 
-import main.conf.DIConfiguration;
+import conf.DIConfiguration;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.SpringApplication;

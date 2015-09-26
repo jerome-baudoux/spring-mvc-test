@@ -1,11 +1,14 @@
-package main.services.impl;
+package services.impl;
 
-import main.services.VersionService;
+import org.springframework.stereotype.Service;
+
+import services.VersionService;
 
 /**
  * Implementation of VersionService
  * @author Jerome
  */
+@Service
 public class VersionServiceImpl implements VersionService {
 	
 	/**

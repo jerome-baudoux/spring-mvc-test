@@ -5,6 +5,7 @@
 	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	</head>
     <body>
-    	Congrats <span th:text="${param.name[0]}" th:unless="${param.name == null}"></span>, you are over 18.
+    	<div layout:include="index :: index-menu"></div>
+    	Validation was OK for Person: <span th:text="${param.name[0]}" th:unless="${param.name == null}"></span>
     </body>
 </html>

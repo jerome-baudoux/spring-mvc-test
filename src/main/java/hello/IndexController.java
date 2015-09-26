@@ -1,4 +1,4 @@
-package main.hello;
+package hello;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

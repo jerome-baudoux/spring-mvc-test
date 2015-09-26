@@ -1,7 +1,7 @@
-package main.hello;
+package hello;
 
-import main.services.VersionService;
-import main.services.VersionService.Version;
+import services.VersionService;
+import services.VersionService.Version;
 
 import java.util.Date;
 import java.util.concurrent.Callable;
@@ -27,16 +27,11 @@ public class RESTController {
 	}
 
 	@RequestMapping("/wait")
-	public String doWait() {
+	public String doWait() throws InterruptedException {
 		
 		System.out.println("Started at: " + new Date());
-		
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		Thread.sleep(10000);
 		
 		System.out.println("Ended at: " + new Date());
 		

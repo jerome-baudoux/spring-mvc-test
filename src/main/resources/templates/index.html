@@ -6,14 +6,17 @@
 </head>
 <body>
     <p th:text="'Hello, ' + ${name} + '!'" />
-    <p>
-    	You can check the following:
-    	<ul>
-    		<li><a href="version">Version (JSON)</a></li>
-    		<li><a href="async-version">Async Version (JSON)</a></li>
-    		<li><a href="person">Person (HTML)</a></li>
-    		<li><a href="ajax">Test ajax</a></li>
-    	</ul>
-    </p>
+    <th:block layout:fragment="index-menu">
+	    <p>
+	    	You can check the following:
+	    	<ul>
+	    		<li><a href="version">Version (JSON)</a></li>
+	    		<li><a href="async-version">Async Version (JSON)</a></li>
+	    		<li><a href="ajax">Test ajax</a></li>
+	    		<li><a href="person">Validation Spring</a></li>
+	    		<li><a href="hibernate">Hibernate</a></li>
+	    	</ul>
+	    </p>
+    </th:block>
 </body>
 </html>
