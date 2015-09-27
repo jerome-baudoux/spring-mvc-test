@@ -38,7 +38,6 @@
         <dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.36</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -48,7 +47,6 @@
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
-            <version>2.2.4</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -59,7 +57,6 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.8.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>

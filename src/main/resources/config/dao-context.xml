@@ -15,7 +15,8 @@
         </property>
         <property name="annotatedClasses">
             <list>
-                <value>entities.Person</value>
+                <value>com.mvc.entities.Person</value>
+                <value>com.mvc.entities.Bill</value>
             </list>
         </property>
     </bean>
@@ -25,7 +26,7 @@
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
     
-    <bean id="PersonDao" class="dao.PersonDaoImpl">
+    <bean id="PersonDao" class="com.mvc.dao.PersonDaoImpl">
     	<property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
