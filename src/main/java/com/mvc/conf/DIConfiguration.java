@@ -2,7 +2,7 @@ package com.mvc.conf;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.Import;
  
 /**
  * Dependency injection configuration
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ImportResource;
  */
 @Configuration
 @ComponentScan(value={"com.mvc.hello", "com.mvc.services"})
-@ImportResource(value={"config/datasource-context.xml", "config/dao-context.xml"})
+@Import(value={DataSourceConfiguration.class, DaoConfiguration.class})
 public class DIConfiguration {
 	
 }

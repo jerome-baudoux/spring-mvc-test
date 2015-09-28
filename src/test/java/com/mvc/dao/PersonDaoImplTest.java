@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.mvc.categories.IntegrationTest;
+import com.mvc.conf.DaoConfiguration;
 import com.mvc.dao.PersonDao;
 import com.mvc.entities.Person;
 
@@ -23,7 +24,7 @@ import static org.assertj.core.api.Assertions.*;
  */
 @Category(IntegrationTest.class)
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(value = { "classpath:datasource-context.xml", "classpath:config/dao-context.xml" })
+@ContextConfiguration(classes = { DataSourceConfiguration.class, DaoConfiguration.class })
 public class PersonDaoImplTest extends AbstractDaoTest {
 
 	@Autowired
