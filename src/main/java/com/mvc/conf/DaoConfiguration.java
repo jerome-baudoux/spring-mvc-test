@@ -1,14 +1,12 @@
 package com.mvc.conf;
 
-import java.util.Properties;
-
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.orm.hibernate3.HibernateTransactionManager;
-import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
+import org.springframework.orm.hibernate4.HibernateTransactionManager;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import com.mvc.dao.PersonDao;
@@ -20,17 +18,12 @@ import com.mvc.entities.Person;
 public class DaoConfiguration {
 	
 	@Bean
-	public AnnotationSessionFactoryBean sessionFactory(DataSource dataSource) {
-		Properties hibernateProperties = new Properties();
-		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-		hibernateProperties.setProperty("hibernate.show_sql", "true");
-	
-		AnnotationSessionFactoryBean sessionFactoryBean = new AnnotationSessionFactoryBean();
-		sessionFactoryBean.setAnnotatedClasses(Person.class, Bill.class);
-		sessionFactoryBean.setHibernateProperties(hibernateProperties);
-		sessionFactoryBean.setDataSource(dataSource);
-		
-		return sessionFactoryBean;
+	public SessionFactory sessionFactory(DataSource dataSource) {
+		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
+		sessionBuilder.addAnnotatedClasses(Person.class, Bill.class);
+		sessionBuilder.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+		sessionBuilder.setProperty("hibernate.show_sql", "true");
+		return sessionBuilder.buildSessionFactory();
 	}
 	
 	@Bean 

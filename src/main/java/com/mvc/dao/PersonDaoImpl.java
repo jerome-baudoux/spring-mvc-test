@@ -1,13 +1,12 @@
 package com.mvc.dao;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.springframework.orm.hibernate3.HibernateCallback;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.orm.hibernate4.HibernateCallback;
+import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import com.mvc.entities.Person;
 
@@ -28,7 +27,7 @@ public class PersonDaoImpl extends HibernateDaoSupport implements PersonDao {
 
 			@Override
 			@SuppressWarnings("unchecked")
-			public List<Person> doInHibernate(Session session) throws HibernateException, SQLException {
+			public List<Person> doInHibernate(Session session) throws HibernateException {
 				
 				// Get the list
 				List<Person> persons = session.createCriteria(Person.class).list();

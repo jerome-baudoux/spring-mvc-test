@@ -2,17 +2,18 @@ package com.mvc.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.hibernate.StaleStateException;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.mvc.categories.IntegrationTest;
 import com.mvc.conf.DaoConfiguration;
-import com.mvc.dao.PersonDao;
 import com.mvc.entities.Person;
 
 import static org.assertj.core.api.Assertions.*;
@@ -28,7 +29,7 @@ import static org.assertj.core.api.Assertions.*;
 public class PersonDaoImplTest extends AbstractDaoTest {
 
 	@Autowired
-	private PersonDao personDao;
+	private PersonDaoImpl personDao;
 
 	@Override
 	protected String getDataset() {
@@ -36,6 +37,7 @@ public class PersonDaoImplTest extends AbstractDaoTest {
 	}
 
 	@Test
+    @Transactional
 	public void getShouldGetAPerson() {
 		Person person = this.personDao.get(1, false);
 		assertThat(person).isNotNull();
@@ -45,18 +47,21 @@ public class PersonDaoImplTest extends AbstractDaoTest {
 	}
 
 	@Test
+    @Transactional
 	public void getShouldReturnNullIfPersonDoesNotExist() {
 		Person person = this.personDao.get(100, false);
 		assertThat(person).isNull();
 	}
 
 	@Test
+    @Transactional
 	public void listShouldReturn2Persons() {
 		List<Person> persons = this.personDao.list(false);
 		assertThat(persons).hasSize(2);
 	}
 
 	@Test
+    @Transactional
 	public void createShouldCreateANewPerson() {
 
 		// New person
@@ -67,6 +72,9 @@ public class PersonDaoImplTest extends AbstractDaoTest {
 		// Creates the person
 		Integer id = this.personDao.save(person);
 		assertThat(id).isNotNull();
+		
+		// force the flush before the end of the method
+		this.personDao.getSessionFactory().getCurrentSession().flush();
 
 		// Checks the person is created correctly
 		Person newPerson = this.personDao.get(id, false);
@@ -76,6 +84,7 @@ public class PersonDaoImplTest extends AbstractDaoTest {
 	}
 
 	@Test
+    @Transactional
 	public void updateShouldUpdateAnExistingPerson() {
 
 		// New person
@@ -86,6 +95,9 @@ public class PersonDaoImplTest extends AbstractDaoTest {
 
 		// Updates the person
 		this.personDao.update(person);
+		
+		// force the flush before the end of the method
+		this.personDao.getSessionFactory().getCurrentSession().flush();
 
 		// Checks the person is updated correctly
 		Person updatedPerson = this.personDao.get(1, false);
@@ -94,16 +106,20 @@ public class PersonDaoImplTest extends AbstractDaoTest {
 		assertThat(updatedPerson.getLastName()).isEqualTo("updated");
 	}
 
-	@Test(expected = DataAccessException.class)
+	@Test(expected = StaleStateException.class)
+    @Transactional
 	public void updateShouldFailWhenPersonDoesNotExist() {
 
 		// New person
 		Person person = new Person();
-		person.setId(100);
+		person.setId(200);
 		person.setFirstName("updated");
 		person.setLastName("updated");
 
-		// Fails
+		// supposed to Fails
 		this.personDao.update(person);
+		
+		// force the flush before the end of the method
+		this.personDao.getSessionFactory().getCurrentSession().flush();
 	}
 }

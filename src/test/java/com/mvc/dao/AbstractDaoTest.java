@@ -45,8 +45,11 @@ public abstract class AbstractDaoTest {
      */
     @Before
     public void setup() throws Exception {
+    	
+    	// Load database ddl
     	loadDdl();
     	
+    	// Load database dml
     	try (InputStream is = Resources.getResource(getDataset()).openStream()) {
         	IDataSet data = new FlatXmlDataSetBuilder().build(is);
         	DatabaseOperation.CLEAN_INSERT.execute(databaseConnection, data);
