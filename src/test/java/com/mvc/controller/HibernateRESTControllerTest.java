@@ -106,6 +106,20 @@ public class HibernateRESTControllerTest {
     }
 
     @Test
+    public void testCreatePersonShouldFailIfFirstNameIsMissing() throws Exception {
+    	
+        this.mockMvc.perform(post("/hibernate/person?lastName=ln"))
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void testCreatePersonShouldFailIfLastNameIsMissing() throws Exception {
+    	
+        this.mockMvc.perform(post("/hibernate/person?firstName=fn"))
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
     public void testUpdatePerson() throws Exception {
     	
         Person expectedPerson = new Person(1, "fn", "ln");
@@ -120,5 +134,26 @@ public class HibernateRESTControllerTest {
 
         verify(mockPersonService, times(1)).update(eq(1), eq("fn"), eq("ln"));
         verify(mockPersonService, times(1)).get(eq(1));
+    }
+
+    @Test
+    public void testUpdatePersonShouldFailIfIdIsMissing() throws Exception {
+    	
+        this.mockMvc.perform(put("/hibernate/person?firstName=fn&lastName=ln"))
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void testUpdatePersonShouldFailIfFirstNameIsMissing() throws Exception {
+    	
+        this.mockMvc.perform(put("/hibernate/person?id=1&lastName=ln"))
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void testUpdatePersonShouldFailIfLastNameIsMissing() throws Exception {
+    	
+        this.mockMvc.perform(put("/hibernate/person?id=1firstName=fn"))
+                .andExpect(status().is4xxClientError());
     }
 }
