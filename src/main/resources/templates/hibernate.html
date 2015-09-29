@@ -14,7 +14,7 @@
 	    		
 	    		$.ajax({
     			  url: "/hibernate/person?firstName=" + firstName + "&lastName=" + lastName,
-    			  method : "PUT"
+    			  method : "POST"
     			}).done(function(data) {
 	    			$("#output").text(JSON.stringify(data));
     			}).error(function(error) {

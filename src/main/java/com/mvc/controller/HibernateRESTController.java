@@ -42,22 +42,32 @@ public class HibernateRESTController {
 		return toPersonDto(persons);
 	}
 
+	@RequestMapping(value = "/hibernate/person", method = RequestMethod.POST)
+	public PersonDto person(
+			@RequestParam(value="firstName", required=true) String firstName,
+			@RequestParam(value="lastName", required=true) String lastName) {
+		
+		Integer id = this.personService.save(firstName, lastName);
+		
+		return toPersonDto(this.personService.get(id));
+	}
+	
 	@RequestMapping(value = "/hibernate/person", method = RequestMethod.PUT)
 	public PersonDto person(
-			@RequestParam(value="id", required=false) Integer id,
+			@RequestParam(value="id", required=true) Integer id,
 			@RequestParam(value="firstName", required=true) String firstName,
 			@RequestParam(value="lastName", required=true) String lastName) {
 
-		if (id==null) {
-			id = this.personService.save(firstName, lastName);
-		} else {
-			this.personService.update(id, firstName, lastName);
-		}
+		this.personService.update(id, firstName, lastName);
 
 		return toPersonDto(this.personService.get(id));
 	}
+	
+	/*
+	 * Debug, just to test the transactions
+	 */
 
-	@RequestMapping(value = "/hibernate/person/exception/outside/tx", method = RequestMethod.PUT)
+	@RequestMapping(value = "/hibernate/person/exception/outside/tx", method = RequestMethod.GET)
 	public PersonDto personExceptionOutsideTx(
 			@RequestParam(value="id", required=false) Integer id,
 			@RequestParam(value="firstName", required=true) String firstName,
@@ -73,7 +83,7 @@ public class HibernateRESTController {
 		throw new RuntimeException("Error outside the transaction");
 	}
 
-	@RequestMapping(value = "/hibernate/person/exception/inside/tx", method = RequestMethod.PUT)
+	@RequestMapping(value = "/hibernate/person/exception/inside/tx", method = RequestMethod.GET)
 	public PersonDto personExceptionInsideTx(
 			@RequestParam(value="id", required=false) Integer id,
 			@RequestParam(value="firstName", required=true) String firstName,
