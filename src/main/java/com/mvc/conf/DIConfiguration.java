@@ -2,6 +2,7 @@ package com.mvc.conf;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
  
 /**
@@ -9,7 +10,8 @@ import org.springframework.context.annotation.Import;
  * @author Jerome
  */
 @Configuration
-@ComponentScan(value={"com.mvc.hello", "com.mvc.services"})
+@EnableAspectJAutoProxy(proxyTargetClass=true)
+@ComponentScan(value={"com.mvc.hello", "com.mvc.services", "com.mvc.aop"})
 @Import(value={DataSourceConfiguration.class, DaoConfiguration.class})
 public class DIConfiguration {
 	
