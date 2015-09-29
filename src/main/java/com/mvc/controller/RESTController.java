@@ -1,4 +1,4 @@
-package com.mvc.hello;
+package com.mvc.controller;
 
 import java.util.Date;
 import java.util.concurrent.Callable;

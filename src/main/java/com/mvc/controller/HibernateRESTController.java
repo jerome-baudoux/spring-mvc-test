@@ -1,4 +1,4 @@
-package com.mvc.hello;
+package com.mvc.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;

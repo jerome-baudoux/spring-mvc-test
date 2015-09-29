@@ -1,4 +1,4 @@
-package com.mvc.hello;
+package com.mvc.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
