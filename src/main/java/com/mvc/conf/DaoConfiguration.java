@@ -18,10 +18,10 @@ import com.mvc.entities.Person;
 public class DaoConfiguration {
 	
 	@Bean
-	public SessionFactory sessionFactory(DataSource dataSource) {
+	public SessionFactory sessionFactory(DataSource dataSource, String dataBaseDialect) {
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 		sessionBuilder.addAnnotatedClasses(Person.class, Bill.class);
-		sessionBuilder.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+		sessionBuilder.setProperty("hibernate.dialect", dataBaseDialect);
 		sessionBuilder.setProperty("hibernate.show_sql", "true");
 		return sessionBuilder.buildSessionFactory();
 	}

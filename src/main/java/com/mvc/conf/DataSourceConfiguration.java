@@ -10,12 +10,17 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 public class DataSourceConfiguration {
 
 	@Bean
+	public String dataBaseDialect() {
+		return "org.hibernate.dialect.PostgreSQLDialect";
+	}
+
+	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/hibernate");
-		dataSource.setUsername("root");
-		dataSource.setPassword("");
+		dataSource.setDriverClassName("org.postgresql.Driver");
+		dataSource.setUrl("jdbc:postgresql://localhost:5432/hibernate");
+		dataSource.setUsername("postgres");
+		dataSource.setPassword("postgres");
 		return dataSource;
 	}
 }

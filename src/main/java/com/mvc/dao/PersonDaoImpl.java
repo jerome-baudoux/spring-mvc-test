@@ -26,24 +26,19 @@ public class PersonDaoImpl extends HibernateDaoSupport implements PersonDao {
 	@Log
 	@Override
 	public List<Person> list(boolean full) {
-		return getHibernateTemplate().execute(new HibernateCallback<List<Person>>() {
+		return getHibernateTemplate().execute((Session session) -> {
+				
+			// Get the list
+			List<Person> persons = session.createCriteria(Person.class).list();
 
-			@Override
-			@SuppressWarnings("unchecked")
-			public List<Person> doInHibernate(Session session) throws HibernateException {
-				
-				// Get the list
-				List<Person> persons = session.createCriteria(Person.class).list();
-				
-				// If we want the full content, fetch bills
-				if(full) {
-					persons.forEach((person)->{
-						Hibernate.initialize(person.getBills());
-					});
-				}
-					
-				return persons;
+			// If we want the full content, fetch bills
+			if(full) {
+				persons.forEach((person)->{
+					Hibernate.initialize(person.getBills());
+				});
 			}
+
+			return persons;
 		});
 	}
 

@@ -14,6 +14,11 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 public class DataSourceConfiguration {
 
 	@Bean
+	public String dataBaseDialect() {
+		return "org.hibernate.dialect.HSQLDialect";
+	}
+
+	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.hsqldb.jdbcDriver");
