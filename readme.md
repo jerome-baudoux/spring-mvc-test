@@ -1,4 +1,4 @@
-Spring Test by Jerome Baudoux
+Spring Test by Jerome Baudoux  [![Build Status](https://travis-ci.org/jerome-baudoux/spring-mvc-test.svg?branch=master)](https://travis-ci.org/jerome-baudoux/spring-mvc-test)
 ==================================
 http://www.jerome-baudoux.com
 
