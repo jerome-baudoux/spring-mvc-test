@@ -9,6 +9,8 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import com.mvc.dao.BillDao;
+import com.mvc.dao.BillDaoImpl;
 import com.mvc.dao.PersonDao;
 import com.mvc.dao.PersonDaoImpl;
 import com.mvc.entities.Bill;
@@ -39,5 +41,12 @@ public class DaoConfiguration {
 		PersonDaoImpl personDao = new PersonDaoImpl();
 		personDao.setSessionFactory(sessionFactory);
 		return personDao;
+	}
+	
+	@Bean
+	public BillDao billDao(SessionFactory sessionFactory) {
+		BillDaoImpl billDao = new BillDaoImpl();
+		billDao.setSessionFactory(sessionFactory);
+		return billDao;
 	}
 }

@@ -29,6 +29,15 @@ public class Bill {
 	
     @Column(name="PRICE")
 	private Integer price;
+    
+    public Bill() {}
+
+	public Bill(Integer id, Person person, Integer price) {
+		super();
+		this.id = id;
+		this.person = person;
+		this.price = price;
+	}
 
 	public Integer getId() {
 		return id;

@@ -8,6 +8,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import com.mvc.categories.UnitTest;
 import com.mvc.services.VersionService;
+import com.mvc.services.VersionService.Version;
 import com.mvc.services.impl.VersionServiceImpl;
 
 import static org.assertj.core.api.Assertions.*;
@@ -27,7 +28,7 @@ public class VersionServiceImplTest {
 	@Test
 	public void getVersionShouldReturnTheCurrentVersion() {
 
-		VersionService.Version version = this.versionService.getVersion();
+		Version version = this.versionService.getVersion();
 
 		assertThat(version).isNotNull();
 		assertThat(version.getMajor()).isEqualTo(0);

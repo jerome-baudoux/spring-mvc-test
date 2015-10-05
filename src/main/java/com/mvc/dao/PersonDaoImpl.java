@@ -3,9 +3,7 @@ package com.mvc.dao;
 import java.util.List;
 
 import org.hibernate.Hibernate;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import com.mvc.aop.LoggerAspect.Log;
@@ -25,11 +23,12 @@ public class PersonDaoImpl extends HibernateDaoSupport implements PersonDao {
 
 	@Log
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<Person> list(boolean full) {
 		return getHibernateTemplate().execute((Session session) -> {
 				
 			// Get the list
-			List<Person> persons = session.createCriteria(Person.class).list();
+			List<Person> persons =  session.createCriteria(Person.class).list();
 
 			// If we want the full content, fetch bills
 			if(full) {

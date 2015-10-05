@@ -33,9 +33,7 @@ public class Person {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
     private List<Bill> bills;
 
-	public Person() {
-		super();
-	}
+	public Person() {}
 
 	public Person(Integer id, String firstName, String lastName) {
 		super();

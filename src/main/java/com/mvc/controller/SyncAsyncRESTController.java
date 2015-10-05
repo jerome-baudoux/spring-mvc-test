@@ -1,6 +1,5 @@
 package com.mvc.controller;
 
-import java.util.Date;
 import java.util.concurrent.Callable;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ import com.mvc.services.VersionService.Version;
  * @author Jerome
  */
 @RestController
-public class RESTController {
+public class SyncAsyncRESTController {
 	
 	@Autowired
 	private VersionService versionService;
@@ -26,27 +25,12 @@ public class RESTController {
 		return versionService.getVersion();
 	}
 
-	@RequestMapping("/wait")
-	public String doWait() throws InterruptedException {
-		
-		System.out.println("Started at: " + new Date());
-
-		Thread.sleep(10000);
-		
-		System.out.println("Ended at: " + new Date());
-		
-		return "ok";
-	}
-
 	@Async
 	@RequestMapping("/async-version")
 	public Callable<Version> async() {
-		return new Callable<Version>() {
-			@Override
-			public Version call() throws Exception {
-				Thread.sleep(1000);
-				return versionService.getVersion();
-			}
+		return () -> {
+			Thread.sleep(1000);
+			return versionService.getVersion();
 		};
 	}
 }

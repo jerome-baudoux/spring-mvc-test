@@ -20,9 +20,7 @@ public class PersonDto {
     @Size(min=2, max=30)
     private String lastName;
 
-	public PersonDto() {
-		super();
-	}
+	public PersonDto() {}
 
 	public PersonDto(Integer id, String firstName, String lastName) {
 		super();

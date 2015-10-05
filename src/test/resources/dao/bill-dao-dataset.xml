@@ -3,4 +3,6 @@
     <person ID="1" FIRST_NAME="fn1" LAST_NAME="ln1"></person>
     <person ID="2" FIRST_NAME="fn2" LAST_NAME="ln2"></person>
     <bill ID="1"  PERSON_ID="1" PRICE="10"></bill>
+    <bill ID="2"  PERSON_ID="1" PRICE="20"></bill>
+    <bill ID="3"  PERSON_ID="2" PRICE="30"></bill>
 </dataset>
