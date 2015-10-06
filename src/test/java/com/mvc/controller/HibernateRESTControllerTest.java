@@ -13,9 +13,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.servlet.View;
 
 import com.mvc.categories.UnitTest;
 import com.mvc.entities.Bill;
@@ -42,31 +39,28 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @Category(UnitTest.class)
 @RunWith(MockitoJUnitRunner.class)
-public class HibernateRESTControllerTest {
+public class HibernateRESTControllerTest extends AbstractSpringMVCControllerTest<HibernateRESTController> {
 
 	@InjectMocks
 	private HibernateRESTController controller;
 
     @Mock
     private PersonAndBillService mockPersonService;
-
-    @Mock
-    private View mockView;
-
-    private MockMvc mockMvc;
     
     private ObjectMapper mapper;
+
+	@Override
+	protected HibernateRESTController getController() {
+		return controller;
+	}
 
     @Before
     public void setUp() throws Exception {
     	
+    	super.setUp();
+    	
     	// reset count
-        Mockito.reset(this.mockView, this.mockPersonService);
-        
-        // create mvc context
-        this.mockMvc = MockMvcBuilders.standaloneSetup(this.controller)
-                .setSingleView(this.mockView)
-                .build();
+        Mockito.reset(this.mockPersonService);
         
         // Configure jackson mapper
         this.mapper = new ObjectMapper();

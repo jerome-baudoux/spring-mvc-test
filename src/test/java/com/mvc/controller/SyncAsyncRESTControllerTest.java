@@ -8,10 +8,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.servlet.View;
 
 import com.mvc.categories.UnitTest;
 import com.mvc.services.VersionService;
@@ -34,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
  */
 @Category(UnitTest.class)
 @RunWith(MockitoJUnitRunner.class)
-public class SyncAsyncRESTControllerTest {
+public class SyncAsyncRESTControllerTest extends AbstractSpringMVCControllerTest<SyncAsyncRESTController> {
 	
 	private static final long MAX_WAIT = 10000; // 10s
 
@@ -44,21 +42,18 @@ public class SyncAsyncRESTControllerTest {
 	@Mock
 	private VersionService versionService;
 
-    @Mock
-    private View mockView;
-
-    private MockMvc mockMvc;
+	@Override
+	protected SyncAsyncRESTController getController() {
+		return controller;
+	}
 
     @Before
     public void setUp() throws Exception {
     	
+    	super.setUp();
+    	
     	// reset count
-        Mockito.reset(this.mockView, this.versionService);
-        
-        // create mvc context
-        this.mockMvc = MockMvcBuilders.standaloneSetup(this.controller)
-                .setSingleView(this.mockView)
-                .build();
+        Mockito.reset(this.versionService);
     }
 
     @Test
