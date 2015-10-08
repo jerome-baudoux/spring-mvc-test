@@ -1,17 +1,21 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+      layout:decorator="/fragments/layout">
 	<head> 
-	    <title>Spring test</title> 
+	    <title>Spring test :: Validation</title> 
 	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	</head>
     <body>
-    	<div layout:include="index :: index-menu"></div>
-    	
-    	<div th:unless="${param.name == null}">
-    		Validation was OK for Person: <span th:text="${param.name[0]}"></span>
-    	</div>
-    	<div th:if="${param.name == null}">
-    		You should not access this page directly
-    	</div>
+	    <div layout:fragment="content" class="container">
+
+			<h1 th:text="#{form.title}"></h1>
+	    
+		    <blockquote>
+		    	<p th:unless="${param.name == null}" th:text="#{form.result.ok(${param.name[0]})}"></p>
+		    	<p th:if="${param.name == null}" th:text="#{form.result.error}"></p>
+	    	</blockquote>
+	    	
+	    </div>
     </body>
 </html>

@@ -10,16 +10,16 @@ import javax.validation.constraints.Size;
  */
 public class PersonDto {
 	
-    @NotNull
-    @Min(1)
+    @NotNull(message="{error.person.id.not.null}")
+    @Min(value=1, message="{error.person.id.min}")
     private Integer id;
 
-    @NotNull
-    @Size(min=2, max=30)
+    @NotNull(message="{error.person.first.name.not.null}")
+    @Size(min=2, max=30, message="{error.person.first.name.size}")
     private String firstName;
 
-    @NotNull
-    @Size(min=2, max=30)
+    @NotNull(message="{error.person.last.name.not.null}")
+    @Size(min=2, max=30, message="{error.person.last.name.size}")
     private String lastName;
 
 	public PersonDto() {}

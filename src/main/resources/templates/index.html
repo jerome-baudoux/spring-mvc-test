@@ -1,21 +1,19 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+      layout:decorator="/fragments/layout">
 <head> 
-    <title>Spring test</title> 
+    <title>Spring test :: Index</title> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-    <p th:text="'Hello, ' + ${name} + '!'"></p>
-    <th:block layout:fragment="index-menu">
-	    <p>
-	    	You can check the following:
-	    	<ul>
-	    		<li><a href="/hibernate">Hibernate</a></li>
-	    		<li><a href="/person">Validation Spring</a></li>
-	    		<li><a href="/version">Version (JSON)</a></li>
-	    		<li><a href="/async-version">Async Version (JSON)</a></li>
-	    	</ul>
-	    </p>
-    </th:block>
+	<div layout:fragment="content" class="container">
+
+		<div class="jumbotron">
+    		<h1 th:text="#{index.hello(${name})}"></h1>
+		  	<p th:text="#{index.description}"></p>
+		</div>
+
+    </div>
 </body>
 </html>

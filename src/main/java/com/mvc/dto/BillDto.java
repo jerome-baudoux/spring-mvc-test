@@ -1,19 +1,9 @@
 package com.mvc.dto;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-
 public class BillDto {
 
-    @NotNull
-    @Min(1)
 	private Integer id;
-
-    @NotNull
 	private PersonDto person;
-
-    @NotNull
-    @Min(0)
 	private Integer price;
     
     public BillDto() {}
