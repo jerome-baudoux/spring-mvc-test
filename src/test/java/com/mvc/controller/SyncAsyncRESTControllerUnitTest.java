@@ -31,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
  */
 @Category(UnitTest.class)
 @RunWith(MockitoJUnitRunner.class)
-public class SyncAsyncRESTControllerTest extends AbstractSpringMVCControllerTest<SyncAsyncRESTController> {
+public class SyncAsyncRESTControllerUnitTest extends AbstractSpringMVCControllerUnitTest<SyncAsyncRESTController> {
 	
 	private static final long MAX_WAIT = 10000; // 10s
 

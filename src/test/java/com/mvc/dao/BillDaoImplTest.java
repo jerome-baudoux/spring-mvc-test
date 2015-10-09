@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.mvc.categories.IntegrationTest;
 import com.mvc.conf.DaoConfiguration;
+import com.mvc.conftest.DataSourceConfiguration;
 import com.mvc.entities.Bill;
 import com.mvc.entities.Person;
 

@@ -43,6 +43,7 @@ public class SpringMVCConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/results").setViewName("results");
+        registry.addViewController("/error").setViewName("error");
     }
     
 

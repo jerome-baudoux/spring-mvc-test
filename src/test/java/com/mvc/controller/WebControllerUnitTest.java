@@ -1,22 +1,21 @@
 package com.mvc.controller;
 
 import java.net.URI;
+import java.security.Principal;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.mvc.categories.UnitTest;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * Test the Web controller
@@ -25,14 +24,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @Category(UnitTest.class)
 @RunWith(MockitoJUnitRunner.class)
-public class WebControllerTest extends AbstractSpringMVCControllerTest<WebController> {
+public class WebControllerUnitTest extends AbstractSpringMVCControllerUnitTest<WebController> {
 
 	private static final String VIEW_INDEX = "index";
 	private static final String VIEW_HIBERNATE = "hibernate";
 	private static final String VIEW_PERSON = "form";
+	private static final String VIEW_LOGIN = "login";
 
 	@InjectMocks
 	private WebController controller;
+	
+	@Mock
+	private Principal principal;
 
 	@Override
 	protected WebController getController() {
@@ -45,10 +48,18 @@ public class WebControllerTest extends AbstractSpringMVCControllerTest<WebContro
     }
 
     @Test
+    public void testLogin() throws Exception {
+
+        this.mockMvc.perform(get("/login"))
+        	.andExpect(status().isOk())
+            .andExpect(view().name(VIEW_LOGIN))
+            .andReturn();
+    }
+
+    @Test
     public void testIndexWithoutParameters() throws Exception {
 
         this.mockMvc.perform(get("/"))
-        	.andExpect(status().isOk())
         	.andExpect(status().isOk())
             .andExpect(view().name(VIEW_INDEX))
             .andExpect(model().attribute("name", "World"))
@@ -56,10 +67,21 @@ public class WebControllerTest extends AbstractSpringMVCControllerTest<WebContro
     }
 
     @Test
+    public void testIndexWhenAuthenticated() throws Exception {
+    	
+    	doReturn("connected user name").when(this.principal).getName();
+
+        this.mockMvc.perform(get("/").principal(this.principal))
+        	.andExpect(status().isOk())
+            .andExpect(view().name(VIEW_INDEX))
+            .andExpect(model().attribute("name", "connected user name"))
+            .andReturn();
+    }
+
+    @Test
     public void testIndexWithNameParameters() throws Exception {
 
         this.mockMvc.perform(get(new URI("/?name=test%20name")))
-        	.andExpect(status().isOk())
         	.andExpect(status().isOk())
             .andExpect(view().name(VIEW_INDEX))
             .andExpect(model().attribute("name", "test name"));
@@ -77,7 +99,6 @@ public class WebControllerTest extends AbstractSpringMVCControllerTest<WebContro
     public void testPersonRouteShouldShowPersonView() throws Exception {
 
         this.mockMvc.perform(get(new URI("/person")))
-        	.andExpect(status().isOk())
         	.andExpect(status().isOk())
             .andExpect(view().name(VIEW_PERSON));
     }

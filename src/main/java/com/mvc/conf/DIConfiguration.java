@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @EnableAspectJAutoProxy(proxyTargetClass=true)
 @ComponentScan(value={"com.mvc.controller", "com.mvc.services", "com.mvc.aop"})
-@Import(value={DataSourceConfiguration.class, DaoConfiguration.class, SpringMVCConfig.class})
+@Import(value={DataSourceConfiguration.class, DaoConfiguration.class, SpringMVCConfig.class, SecurityConfig.class})
 public class DIConfiguration {
 	
 }

@@ -39,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @Category(UnitTest.class)
 @RunWith(MockitoJUnitRunner.class)
-public class HibernateRESTControllerTest extends AbstractSpringMVCControllerTest<HibernateRESTController> {
+public class HibernateRESTControllerUnitTest extends AbstractSpringMVCControllerUnitTest<HibernateRESTController> {
 
 	@InjectMocks
 	private HibernateRESTController controller;

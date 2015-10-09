@@ -3,17 +3,17 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
       layout:decorator="/fragments/layout">
 	<head> 
-	    <title>Spring test :: Index</title> 
+	    <title>Spring test :: Admin</title> 
 	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	</head>
-	<body>
-		<div layout:fragment="content" class="container">
-	
+    <body>
+	    <div layout:fragment="content" class="container">
+
 			<div class="jumbotron">
-	    		<h1 th:text="#{index.hello(${name})}"></h1>
-			  	<p th:text="#{index.description}"></p>
+				<h1 th:text="#{admin.title}"></h1>
+				<p th:text="#{admin.message}"></p>
 			</div>
-	
-	    </div>
-	</body>
+
+		</div>
+    </body>
 </html>

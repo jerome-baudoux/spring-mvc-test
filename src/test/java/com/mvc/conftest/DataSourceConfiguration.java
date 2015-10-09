@@ -1,4 +1,4 @@
-package com.mvc.dao;
+package com.mvc.conftest;
 
 import java.sql.SQLException;
 

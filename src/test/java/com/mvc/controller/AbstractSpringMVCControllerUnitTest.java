@@ -5,7 +5,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-public abstract class AbstractSpringMVCControllerTest<T> {
+public abstract class AbstractSpringMVCControllerUnitTest<T> {
 
     protected MockMvc mockMvc;
     

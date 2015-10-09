@@ -12,7 +12,7 @@
 
 			<h1 th:text="#{form.title}"></h1>
 
-			<form action="#" th:action="@{/person/check}" th:object="${person}" method="post" class="form-horizontal">
+			<form th:action="@{/person/check}" th:object="${person}" method="post" class="form-horizontal">
 	
 				<div class="form-group">
 					<label for="id" class="col-sm-2 control-label" th:text="#{global.person.id}"></label>
@@ -44,7 +44,7 @@
 	
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-		            	<button type="submit" class="btn btn-default" th:text="#{form.validate.button}">Validate</button>
+		            	<button type="submit" class="btn btn-default" th:text="#{form.validate.button}"></button>
 					</div>
 				</div>
 			</form>

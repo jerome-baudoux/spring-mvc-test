@@ -2,6 +2,7 @@ package com.mvc.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.security.Principal;
 
 import javax.validation.Valid;
 
@@ -21,16 +22,28 @@ import com.mvc.dto.PersonDto;
  */
 @Controller
 public class WebController {
-	
-	/**
-	 * Index
-	 * @param name optional
-	 * @param model model
-	 * @return page name
-	 */
+
+	@RequestMapping("/login")
+	public String login(Model model, Principal principal) {
+		
+		// Go to index if already logged in
+		if (principal!=null) {
+			return "redirect:/";
+		}
+		
+		return "login";
+	}
+
 	@RequestMapping("/")
-	public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
-		model.addAttribute("name", name);
+	public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model, Principal principal) {
+		
+		// Check user
+		if (principal!=null) {
+			model.addAttribute("name", principal.getName());
+		} else {
+			model.addAttribute("name", name);
+		}
+		
 		return "index";
 	}
 
@@ -53,5 +66,4 @@ public class WebController {
         // Test redirection
 		return "redirect:/results?name="+URLEncoder.encode(person.getFirstName()+" "+person.getLastName(), "UTF-8");
     }
-
 }

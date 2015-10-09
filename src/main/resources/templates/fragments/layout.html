@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head> 
     <title>Spring test</title> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -13,11 +14,21 @@
 		<div class="container-fluid">
 		
 			<ul class="nav navbar-nav">
+	    		<li role="presentation"><a href="/">Index</a></li>
 	    		<li role="presentation"><a href="/hibernate">Hibernate</a></li>
 	    		<li role="presentation"><a href="/person">Validation Spring</a></li>
+	    		<li role="presentation"><a href="/admin">Admin</a></li>
 	    		<li role="presentation"><a href="/version" target="_blank">Version (JSON)</a></li>
 	    		<li role="presentation"><a href="/async-version" target="_blank">Async Version (JSON)</a></li>
 	    	</ul>
+	    	
+			<form th:unless="${#httpServletRequest.remoteUser}" th:action="@{/login}" method="GET" class="navbar-form navbar-left">
+				<button type="submit" class="btn btn-default">Login</button>
+	    	</form>
+			<form th:if="${#httpServletRequest.remoteUser}" th:action="@{/logout}" method="POST" class="navbar-form navbar-left">
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+				<button type="submit" class="btn btn-default">Logout</button>
+	    	</form>
 	    	
 	    	<ul class="nav navbar-nav navbar-right">
         		<li><a href="/?locale=FR">FR</a></li>
