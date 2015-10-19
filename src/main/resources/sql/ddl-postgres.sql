@@ -14,5 +14,17 @@ CREATE TABLE IF NOT EXISTS bill (
 
 ALTER TABLE bill
   ADD CONSTRAINT fk_bill_to_person FOREIGN KEY (PERSON_ID) REFERENCES person (ID);
+  
+CREATE TABLE users(
+  username varchar(50) NOT NULL PRIMARY KEY,
+  password varchar(50) NOT NULL,
+  enabled BOOLEAN NOT NULL
+);
 
+CREATE TABLE authorities (
+  username varchar(50) NOT NULL,
+  authority varchar(50) NOT NULL,
+  CONSTRAINT fk_authorities_users FOREIGN KEY(username) REFERENCES users(username)
+);
+  
 CREATE SEQUENCE hibernate_sequence
